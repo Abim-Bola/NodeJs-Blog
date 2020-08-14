@@ -1,0 +1,30 @@
+<h1 class="text-center mb-3 mt-5"><%= title %></h1>
+<%- include ("partials/messages"); %>
+<form action="/users/compose" method="POST">
+  <div class="container-sm mt-5">
+
+<div class="form-group">
+    <label for="exampleInputTitle1">Title</label>
+    <input type="title"
+     class="form-control" 
+     id="exampleInputTitle1" 
+     placeholder="Enter Title"
+     name="content"
+    value="<%= typeof content != 'undefined' ? content : '' %>"
+     >
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputContent1">Content</label>
+    <input type="text" 
+    class="form-control" 
+    id="exampleInputContent1" 
+    placeholder="Enter Content"
+    name="content"
+    value="<%= typeof content != 'undefined' ? content: '' %>"
+    >
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
