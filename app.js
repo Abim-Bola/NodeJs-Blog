@@ -21,10 +21,11 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 //ejs 
 app.use(expressLayout);
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+
 
 //body-parser
 app.use(express.urlencoded({extended: false}));
+app.use(express.static("public"));
 
 //express session
 app.use(session({
@@ -52,6 +53,6 @@ app.use("/users", require("./routes/users"));
 app.use("/manage", require("./routes/manage"));
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, console.log("server started on" + " " + PORT));

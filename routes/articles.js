@@ -30,12 +30,12 @@ router.post("/compose", function(req, res){
             content});
     } else {
 
-      const newPost = new Post ({
+      const post = new Post ({
           title,
           content
         });
 
-     newPost.save(function(err){
+     post.save(function(err){
          if(err){
              console.log(err);
          } else {
