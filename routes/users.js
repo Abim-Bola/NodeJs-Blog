@@ -8,11 +8,14 @@ const saltRounds = 10;
 const User = require("../models/User");
 
 
-//admin login
-router.get("/login", (req, res) => res.render("login"));
+//user login
+router.get("/signin", (req, res) => res.render("login"));
 
-//admin register
+//user register
 router.get("/register", (req, res) => res.render("register"));
+
+//user profile
+router.get("/profile", (req, res) => res.render("profile"));
 
 //registration password validation
 router.post("/register", (req, res) => {

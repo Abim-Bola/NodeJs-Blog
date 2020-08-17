@@ -1,3 +1,4 @@
+<%- include ("partials/header"); %>
 <div class="jumbotron" style="background: url('../images/office.jpg')no-repeat center fixed; background-size: cover;">
     <h1 class="display-4" style=" font-weight:bolder; color: grey;">TheGrapeFruit Blog</h1>
     <p class="lead paragraph">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -8,10 +9,16 @@
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <% posts.forEach(function(post){ %>
-            <h1 class="display-4"><%= post.title %></h1>
-            <p class="lead"> <%= post.content %> </p>
-        <% }) %>
+   
+        <a href="/category/health"><button>Health</button></a>
+        <a href="/category/food"><button>Food</button></a>
+        <a href="/category/technology"><button>Technology</button></a>
+        <a href="/category/music"><button>Music</button></a>
+        <a href="/category/business"><button>Business</button></a>
+        <a href="/category/productivity"><button>Productivity</button></a>
+        <a href="/category/culture"><button>Culture</button></a>
+        <a href="/category/fashion"><button>Fashion</button></a>
+        <a href="/category/science"><button>Science</button></a>
       
     </div>
   </div>

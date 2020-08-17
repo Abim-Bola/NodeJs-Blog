@@ -2,9 +2,9 @@
 const express = require("express");
 const router = express.Router();
 const manage = require("../routes/manage");
+const category = require("../routes/category");
 
 //model
-
 const Post = require("../models/posts");
 
 // router.get("/compose", function(req, res){
@@ -12,10 +12,10 @@ const Post = require("../models/posts");
 //     });
 
 router.post("/compose", function(req, res){
-   const {title, content} = req.body;
+   const {title, content, category } = req.body;
   let errors = [];
 
-    if(!title || !content){
+    if(!title || !content || !category){
         errors.push({msg: "Please fill all fields"});
     }
 
@@ -27,12 +27,13 @@ router.post("/compose", function(req, res){
 
     if(errors.length > 0){
         res.render("compose", {errors, title, 
-            content});
+            content, category});
     } else {
 
       const post = new Post ({
           title,
-          content
+          content,
+          category
         });
 
      post.save(function(err){
@@ -41,13 +42,45 @@ router.post("/compose", function(req, res){
          } else {
              console.log("saved");
              errors.push({msg: "Blog post saved"});
-             res.render("compose", {errors, title, content} );
+             res.render("compose", {errors, title, content, category} );
             //  res.redirect("/manage/compose");
          }
         });
     }
 
 });
+
+const hello = "hi";
+
+
+
+//edit a post
+router.post("/edit/:id", function(req, res){
+    const edit = req.params.id;
+    console.log(req.params.id);
+    const {title, content, category } = req.body;
+
+    let errors = [];
+
+    if(!title || !content || !category){
+        errors.push({msg: "Please fill all fields"});
+    }
+
+    Post.findByIdAndUpdate( {_id: edit}, {
+          title,
+          content,
+          category
+        }, { new: true }, function(err){
+             if(err){
+                 console.log("didnt update");
+             }else{
+                errors.push({msg: "Blog post editted"});
+                 res.render("edit", {errors});
+             }
+        }
+
+    );
+    });
 
 
 

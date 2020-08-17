@@ -1,0 +1,10 @@
+<%- include ("partials/header"); %>
+
+<% posts.forEach(function(post) { %>
+    <h1><%= post.title %></h1>
+    <h1><%= post.content %></h1>
+    <h1><%= post.category %></h1>
+    <a href="/manage/edit/<%= post._id%>"><button name="edit">Edit</button><a>
+    <a href="/manage/delete/<%= post._id%>"><button name="view">Delete</button></a>
+    <button name="edit">View</button>
+<%})%>

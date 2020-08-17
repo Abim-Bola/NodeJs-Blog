@@ -50,6 +50,8 @@ app.use("/articles", require("./routes/articles"));
 
 app.use("/users", require("./routes/users"));
 
+app.use("/category", require("./routes/category"));
+
 app.use("/manage", require("./routes/manage"));
 
 
