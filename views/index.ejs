@@ -1,24 +1,43 @@
 <%- include ("partials/header"); %>
-<div class="jumbotron" style="background: url('../images/office.jpg')no-repeat center fixed; background-size: cover;">
-    <h1 class="display-4" style=" font-weight:bolder; color: grey;">TheGrapeFruit Blog</h1>
-    <p class="lead paragraph">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+<div class="jumbotron main-jumbo" >
+  <div class="container-fluid">
+    <h1 class="main-header">Learn about topics you care about.</h1>
+    <p class="subheader">Contents specially curated for you.</p>
+  </div>
+    <div class="btn-container container-fluid">
+      <a href="/category/health"><button class="btn btn-outline-primary topic-btn">Health</button></a>
+      <a href="/category/food"><button class="btn btn-outline-danger topic-btn">Food</button></a>
+      <a href="/category/technology"><button class="btn btn-outline-dark topic-btn">Technology</button></a>
+      <a href="/category/music"><button class="btn btn-outline-success topic-btn">Music</button></a>
+      <a href="/category/business"><button class="btn btn-outline-primary topic-btn">Business</button></a>
+      <a href="/category/productivity"><button class="btn btn-outline-primary topic-btn">Productivity</button></a>
+      <a href="/category/culture"><button class="btn btn-outline-warning topic-btn">Culture</button></a>
+      <a href="/category/fashion"><button class="btn btn-outline-info topic-btn">Fashion</button></a>
+      <a href="/category/science"><button class="btn btn-outline-dark topic-btn">Science</button></a> 
+  </div>
   </div>
 
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-   
-        <a href="/category/health"><button>Health</button></a>
-        <a href="/category/food"><button>Food</button></a>
-        <a href="/category/technology"><button>Technology</button></a>
-        <a href="/category/music"><button>Music</button></a>
-        <a href="/category/business"><button>Business</button></a>
-        <a href="/category/productivity"><button>Productivity</button></a>
-        <a href="/category/culture"><button>Culture</button></a>
-        <a href="/category/fashion"><button>Fashion</button></a>
-        <a href="/category/science"><button>Science</button></a>
-      
+  <div class="container" style="text-align: center; padding-top: 3px; padding-bottom: 50px;">
+    <a href="/users/register"><button type="button" class="btn btn-success btn-lg" style="padding-left: 70px; padding-right: 70px; font-weight: bold;">Get started</button></a>
+    <p style="padding-top: 10px;">Already have an account? <a href="/users/signin" style="color: green">Sign in</a></p>
+  </div>
+  <div class="container-fluid cnt-subwrite">
+    <div class="row index-row">
+      <div class="col-sm">
+        <img src="/images/reading2.png" width="200" height="200">
+        <h1 class="subwrite">Read amazing content</h1>
+        <p class=" para">Write about something you care about. It doesnt matter how long or short it is. express yourself anyhow you want through words.</p>
+      </div>
+      <div class="col-sm">
+        <img  src="/images/express1.png" width="200" height="200">
+        <h1 class="subwrite">Express yourself</h1>
+        <p  class=" para">Write about something you care about. It doesnt matter how long or short it is. express yourself anyhow you want through words.</p>
+      </div>
+      <div class="col-sm">
+        <img src="/images/grow1.png" width="200" height="200">
+        <h1 class="subwrite">Grow your audience</h1>
+        <p class=" para">Write about something you care about. It doesnt matter how long or short it is. express yourself anyhow you want through words.</p>
+      </div>
     </div>
   </div>
+

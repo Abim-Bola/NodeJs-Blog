@@ -6,10 +6,31 @@ const category = require("../routes/category");
 
 //model
 const Post = require("../models/posts");
+const { post } = require("../routes/manage");
 
 // router.get("/compose", function(req, res){
 //     res.render("compose");
 //     });
+
+router.get("/posts", function(req, res){
+
+    Post.find({}, function(err, posts){
+         if(err){
+             res.send("Uh Oh");
+         }else{
+             res.render("posts", {posts: posts});
+         }
+    });
+});
+
+router.get("/singlepost/:id", function(req, res){
+const id = req.params.id;
+
+Post.find({_id: id}, function(err, posts){
+res.render("singlepost", {posts: posts});
+});
+});
+
 
 router.post("/compose", function(req, res){
    const {title, content, category } = req.body;
@@ -20,7 +41,7 @@ router.post("/compose", function(req, res){
     }
 
     if(content){
-    if(content.length > 1000){
+    if(content.length > 2000){
         errors.push({msg: "Post is longer than 1000 characters"});
     }
 }

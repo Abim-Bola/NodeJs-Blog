@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
 app.use(express.static("public"));
 
+
 //express session
 app.use(session({
     secret: 'keyboard cat',
