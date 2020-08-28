@@ -109,7 +109,13 @@
     padding-bottom:30px; */
 }
 
+.alert-dismissible { 
+    margin-right: 20%; 
+    margin-left: 20%; 
 
+    /* Reset pixel value */ 
+    padding-right: 0px; 
+} 
 
 .blog-post{
    padding-left: 20%;  

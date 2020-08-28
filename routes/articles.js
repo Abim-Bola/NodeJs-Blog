@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const manage = require("../routes/manage");
 const category = require("../routes/category");
+const { ensureAuthenticated } = require("../config/auth");
 
 //model
 const Post = require("../models/posts");
@@ -48,7 +49,7 @@ router.post("/compose", function(req, res){
 
     if(errors.length > 0){
         res.render("compose", {errors, title, 
-            content, category});
+            content, category, currentUser: req.user});
     } else {
 
       const post = new Post ({
@@ -59,11 +60,11 @@ router.post("/compose", function(req, res){
 
      post.save(function(err){
          if(err){
-             console.log(err);
+             errors.push({msg: "Your blog post did not save"});
          } else {
              console.log("saved");
              errors.push({msg: "Blog post saved"});
-             res.render("compose", {errors, title, content, category} );
+             res.render("compose", {errors, title, content, category, currentUser: req.user} );
             //  res.redirect("/manage/compose");
          }
         });

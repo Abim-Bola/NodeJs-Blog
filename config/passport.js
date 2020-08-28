@@ -4,22 +4,25 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 
-const User = require("../models/user");
+
+const User = require("../models/User");
+const router = require("../routes/manage");
+const passport = require("passport");
 
 module.exports = function (passport) {
     passport.use(
         new LocalStrategy({ usernameField: "email" }, function (email, password, done) {
             //Match User
-            User.findOne({ email: email }, function (err, foundUser) {
+            User.findOne({ email: email }, function (err, user) {
                 if(err) {
                     console.log(err);
                 }
-                if (!foundUser) {
+                if (!user) {
                     return done(null, false, { message: "Email is not registered"});
                 }
 
                 //match password
-                bcrypt.compare(password, foundUser.password, function (err, isMatch) {
+                bcrypt.compare(password, user.password, function (err, isMatch) {
                      if(err){
                          console.log(err);
                      }
@@ -44,3 +47,8 @@ module.exports = function (passport) {
         });
       });
 };
+
+
+
+
+

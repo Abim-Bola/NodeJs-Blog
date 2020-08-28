@@ -2,14 +2,15 @@
 const express = require("express");
 const Post = require("../models/posts");
 const router = express.Router();
+const { ensureAuthenticated } = require("../config/auth");
 
-router.get("/compose", function(req, res){
-res.render("compose");
+router.get("/compose", ensureAuthenticated, function(req, res){
+res.render("compose", {currentUser: req.user});
 });
 
 
 
-router.get("/edit/:id", function(req, res){
+router.get("/edit/:id", ensureAuthenticated, function(req, res){
     const edit = req.params.id;
     Post.find({_id: edit}, function(err, posts){
         if(err){
@@ -23,7 +24,7 @@ router.get("/edit/:id", function(req, res){
 });
 
 //delete post
-router.get("/delete/:id", function(req, res){
+router.get("/delete/:id", ensureAuthenticated, function(req, res){
     const edit = req.params.id;
 
     Post.deleteOne({_id: edit}, function(err){

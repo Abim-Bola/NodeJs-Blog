@@ -4,10 +4,19 @@ const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
+const multer = require("multer");
+const gridfsStorage = require("multer-gridfs-storage");
+const path = require("path");
+const grid = require("gridfs-stream");
+const methodOverride = require("method-override");
+const crypto = require("crypto");
 const session = require("express-session");
-
+const passport = require("passport");
 
 const app = express();
+
+//passport config
+require('./config/passport')(passport);
 
 //db config
 const db = require("./config/key").MongoURI;
@@ -20,6 +29,7 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 
 //ejs 
 app.use(expressLayout);
+app.use(methodOverride('method'));
 app.set('view engine', 'ejs');
 
 
@@ -35,6 +45,9 @@ app.use(session({
     saveUninitialized: true,
   }));
   
+app.use(passport.initialize());
+app.use(passport.session());
+
 //flash
 app.use(flash());
 
@@ -42,6 +55,7 @@ app.use(flash());
 app.use(function(req, res, next){
 res.locals.success_msg = req.flash("success_msg");
 res.locals.error_msg = req.flash("error_msg");
+res.locals.error = req.flash("error");
 next();
 });
 

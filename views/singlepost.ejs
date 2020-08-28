@@ -3,7 +3,7 @@
 <% posts.forEach(function(post) { %>
     <div class="container-fluid blog-post">
     <h1 class="blg-tle" style="text-align: center;"><%= post.title %></h1>
-    <p class="info" style="color: grey; font-style: italic; text-align: center;"><%= post.date %> || Posted by </p>
+    <p class="info" style="color: grey; font-style: italic; text-align: center;"><%= post.date %> || Posted by  </p>
     <hr>
     <p class="blg-cnt"><%= post.content%></p>
     <a href="/manage/edit/<%= post._id%>"><button class="btn btn-outline-secondary" name="edit">Edit</button><a>

@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">Category</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="category">
+    <select class="form-control" id="exampleFormControlSelect1" name="category" value="<%= typeof category != 'undefined' ? category: '' %>">
       <option value="health">Health</option>
       <option value="science">Science</option>
       <option value="business">Business</option>
@@ -39,17 +39,6 @@
       <option value="fashion">Fashion</option>
       
     </select>
-  </div>
-
-  <div class="input-group" style="margin-top: 40px;">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-    </div>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="inputGroupFile01"
-        aria-describedby="inputGroupFileAddon01">
-      <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
-    </div>
   </div>
   
   <button type="submit" class="btn btn-primary" style="margin-top:20px;">Submit</button>

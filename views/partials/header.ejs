@@ -8,18 +8,38 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
     </li>
+
+    
+
         <li class="nav-item">
             <a class="nav-link" href="/manage/compose">Write</a>
         </li>
+
+        
         <li class="nav-item">
             <a class="nav-link" href="/articles/posts">Content</a>
         </li>
+     
+
+        <% if(!currentUser) { %>
         <li class="nav-item" >
             <a class="nav-link" href="/users/signin">Sign in</a>
         </li>
+        
+        
         <li class="nav-item btn btn-success btn-sm started">
             <a class="nav-link started" style="color: white;" href="/users/register">Get Started</a>
         </li>
+        <% } else { %>
+
+            <li class="nav-item btn btn-outline-success btn-sm started">
+                <a class="nav-link started"  href="/users/signout">Sign out</a>
+            </li>
+
+            <% } %>
+
+
+      
     </ul>
  </div>
 </nav>

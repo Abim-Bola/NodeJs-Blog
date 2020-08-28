@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const {ensureAuthenticated} = require("../config/auth");
 const saltRounds = 10;
 
 //model
@@ -9,13 +11,19 @@ const User = require("../models/User");
 
 
 //user login
-router.get("/signin", (req, res) => res.render("login"));
+router.get("/signin", (req, res) => res.render("signin", {currentUser: req.user}));
 
 //user register
-router.get("/register", (req, res) => res.render("register"));
+router.get("/register", (req, res) => res.render("register", {currentUser: req.user}));
 
 //user profile
-router.get("/profile", (req, res) => res.render("profile"));
+router.get("/profile", ensureAuthenticated, (req, res) => res.render("profile", 
+{
+  firstname: req.user.fname, 
+  lastname: req.user.lname,
+  email: req.user.email,
+  currentUser: req.user
+}));
 
 //registration password validation
 router.post("/register", (req, res) => {
@@ -48,9 +56,8 @@ router.post("/register", (req, res) => {
     } else {
 
   //find the user
-        User.findOne({email: email}, function(err, foundUser){
+        User.findOne({email: email}, function(foundUser){
 
-            if(err){
           if(foundUser){
               errors.push({msg: 'Email already registered'});
               res.render("register", {
@@ -60,8 +67,6 @@ router.post("/register", (req, res) => {
                 email,
                 password
             });
-        }
-    
           } else { 
 
         const newUser = new User ({
@@ -82,7 +87,7 @@ router.post("/register", (req, res) => {
                     'success_msg',
                     'You are now registered and can log in'
                   );
-                  res.redirect('/users/login');
+                  res.redirect('/users/signin');
                 })
                 .catch(err => console.log(err));
             });
@@ -91,6 +96,21 @@ router.post("/register", (req, res) => {
       });
     }
   });
+
+  router.post("/signin", function(req, res, next){
+    passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/users/signin",
+    failureFlash: true
+    })(req, res, next);
+    });
+
+
+    router.get("/signout", function(req, res, next){
+      req.logout();
+      req.flash("success_msg", "You are signed out");
+      res.redirect("/users/signin");
+    });
 
   
 module.exports = router;

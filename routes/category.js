@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/posts");
+const {ensureAuthenticated} = require("../config/auth");
 
 //display content based on category search
 router.get("/:category_id", function(req, res){
@@ -13,7 +14,7 @@ router.get("/:category_id", function(req, res){
         res.send(err);
     } else{
         if(posts)
-        res.render("category", {posts: posts});
+        res.render("category", {posts: posts, currentUser: req.user});
     }
     });
     });
