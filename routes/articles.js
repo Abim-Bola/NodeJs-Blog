@@ -9,32 +9,33 @@ const { ensureAuthenticated } = require("../config/auth");
 const Post = require("../models/posts");
 const { post } = require("../routes/manage");
 
-// router.get("/compose", function(req, res){
-//     res.render("compose");
-//     });
 
+
+//view all posts
 router.get("/posts", function(req, res){
 
     Post.find({}, function(err, posts){
          if(err){
              res.send("Uh Oh");
          }else{
-             res.render("posts", {posts: posts});
+             res.render("posts", {posts: posts, currentUser: req.user});
          }
     });
 });
 
+//view single post
 router.get("/singlepost/:id", function(req, res){
 const id = req.params.id;
 
 Post.find({_id: id}, function(err, posts){
-res.render("singlepost", {posts: posts});
+res.render("singlepost", {posts: posts, currentUser: req.user});
 });
 });
 
 
 router.post("/compose", function(req, res){
    const {title, content, category } = req.body;
+   const loggedUser = req.user.fname + " " + req.user.lname; 
   let errors = [];
 
     if(!title || !content || !category){
@@ -55,14 +56,14 @@ router.post("/compose", function(req, res){
       const post = new Post ({
           title,
           content,
-          category
+          category,
+          name: loggedUser
         });
 
      post.save(function(err){
          if(err){
-             errors.push({msg: "Your blog post did not save"});
+             errors.push("Your blog post did not save");
          } else {
-             console.log("saved");
              errors.push({msg: "Blog post saved"});
              res.render("compose", {errors, title, content, category, currentUser: req.user} );
             //  res.redirect("/manage/compose");

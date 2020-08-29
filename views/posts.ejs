@@ -1,13 +1,14 @@
-<%- include ("partials/header"); %>
 
 <% posts.forEach(function(post) { %>
     <div class="container blog-post">
     <h1 class="blg-tle"><%= post.title %></h1>
-    <p class="info" style="color: grey; font-style: italic;"><%= post.date %> || Posted by </p>
+    <p class="info" style="color: grey; font-style: italic;"><%= post.date %> || Posted by <%= post.name  %>  </p>
     <p class="blg-cnt"><%= post.content.substring(0, 300) + "..." %></p>
     <p ><a style="color: green;" href="/articles/singlepost/<%= post._id%>">Read More ></a></p>
+   <% if(currentUser) { %>
     <a href="/manage/edit/<%= post._id%>"><button class="btn btn-outline-secondary" name="edit">Edit</button><a>
     <a href="/manage/delete/<%= post._id%>"><button class="btn btn-outline-secondary" name="view">Delete</button></a>
+    <% } %>
     <a href="/articles/singlepost/<%= post._id%>"><button name="edit" class="btn btn-outline-secondary" >View</button></a>
     <hr class="post-brk" style=" border: 0.01px solid grey">
     </div>
