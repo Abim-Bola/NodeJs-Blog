@@ -11,6 +11,7 @@ const grid = require("gridfs-stream");
 const methodOverride = require("method-override");
 const crypto = require("crypto");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const passport = require("passport");
 
 const app = express();
@@ -21,8 +22,9 @@ require('./config/passport')(passport);
 //db config
 const db = require("./config/key").MongoURI;
 
+
 //connect to mongoose
-mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log("mongo connected"))
 .catch(err => console.log(err));
 
@@ -43,6 +45,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   }));
   
 app.use(passport.initialize());
