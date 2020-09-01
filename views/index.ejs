@@ -16,11 +16,15 @@
   </div>
 </div>
 
+<% if(!currentUser) { %>
 <div class="container" style="text-align: center; padding-top: 3px; padding-bottom: 50px;">
   <a href="/users/register"><button type="button" class="btn btn-success btn-lg"
       style="padding-left: 70px; padding-right: 70px; font-weight: bold;">Get started</button></a>
   <p style="padding-top: 10px;">Already have an account? <a href="/users/signin" style="color: green">Sign in</a></p>
 </div>
+<% } %>
+
+
 <div class="container-fluid cnt-subwrite">
   <div class="row index-row">
     <div class="col-sm">
@@ -29,6 +33,7 @@
       <p class=" para">Write about something you care about. It doesnt matter how long or short it is. express yourself
         anyhow you want through words.</p>
     </div>
+
     <div class="col-sm">
       <img src="/images/grow1.png" width="200" height="200">
       <h1 class="subwrite">Grow your audience</h1>

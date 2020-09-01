@@ -5,6 +5,8 @@ const Post = require("../models/posts");
 const { subscribe } = require("./manage");
 const { ensureAuthenticated } = require("../config/auth");
 
+
+//index page
 router.get("/", function (req, res) {
 
     Post.find({}, function (err, posts) {

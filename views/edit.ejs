@@ -3,7 +3,7 @@
 
 <% posts.forEach(function(post) { %>
 <form action="/articles/edit/<%= post._id %>" method="POST">
-  <div class="container-sm mt-5">
+  <div class="container-sm mt-5 form">
 <div class="form-group">
     <label for="exampleInputTitle1">Title</label>
     <input type="title"
@@ -28,7 +28,8 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">Category</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="category" value="<%= post.category %>">
+    <select class="form-control" id="exampleFormControlSelect1" name="category">
+      <option value="" selected disabled hidden><%= post.category %></option>
       <option value="health">Health</option>
       <option value="science">Science</option>
       <option value="business">Business</option>
@@ -40,7 +41,7 @@
     </select>
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-success">Submit</button>
 </div>
 </form>
 

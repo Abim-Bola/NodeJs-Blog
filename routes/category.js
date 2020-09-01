@@ -10,12 +10,10 @@ router.get("/:category_id", function (req, res) {
     const category = req.params.category_id;
 
     Post.find({ category: category }, function (err, posts) {
-        if (err) {
-            res.send(err);
-        } else {
-            if (posts)
-                res.render("category", { posts: posts, currentUser: req.user });
-        }
+        if (posts) {
+                res.render("category", { posts: posts, currentUser: req.user, category});
+            } 
+        
     });
 });
 

@@ -1,3 +1,8 @@
+body{
+    height:100%; 
+    margin:0;
+}
+
 .container-sm {
     max-width: 1020px;
     background-color: blue;
@@ -73,8 +78,9 @@
 .form{
     background-color: white;
     padding-bottom: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    width: 70%;
+    /* padding-left: 50px;
+    padding-right: 50px; */
 }
 
 .subwrite{
@@ -110,16 +116,19 @@
 }
 
 .alert-dismissible { 
-    margin-right: 20%; 
+    /* margin-right: 20%; 
     margin-left: 20%; 
 
     /* Reset pixel value */ 
-    padding-right: 0px; 
+    /* padding-right: 0px;  */ 
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
 } 
 
 .blog-post{
-   padding-left: 20%;  
-   padding-right: 20%;
+   padding-left: 15%;  
+   padding-right: 15%;
    padding-top: 4%;
 }
 

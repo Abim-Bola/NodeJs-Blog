@@ -25,6 +25,24 @@ router.get("/profile", ensureAuthenticated, (req, res) => res.render("profile",
     currentUser: req.user
   }));
 
+  //get req for user signout
+router.get("/signout", function (req, res, next) {
+  req.logout();
+  req.flash("success_msg", "You are signed out");
+  res.redirect("/users/signin");
+});
+
+
+
+//post req for user signin
+router.post("/signin", function (req, res, next) {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/users/signin",
+    failureFlash: true
+  })(req, res, next);
+});
+
 //registration password validation
 router.post("/register", (req, res) => {
 
@@ -95,21 +113,6 @@ router.post("/register", (req, res) => {
       }
     });
   }
-});
-
-router.post("/signin", function (req, res, next) {
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/users/signin",
-    failureFlash: true
-  })(req, res, next);
-});
-
-
-router.get("/signout", function (req, res, next) {
-  req.logout();
-  req.flash("success_msg", "You are signed out");
-  res.redirect("/users/signin");
 });
 
 

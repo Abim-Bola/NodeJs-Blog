@@ -15,7 +15,7 @@ content: {
 
 date: {
     type: Date,
-    default: Date.now
+    default: new Date()
 },
 
 category: {
@@ -24,6 +24,11 @@ category: {
 },
 
 name: {
+    type: String,
+    required: true
+},
+
+userId: {
     type: String,
     required: true
 }
