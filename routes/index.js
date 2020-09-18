@@ -7,7 +7,7 @@ const { ensureAuthenticated } = require("../config/auth");
 
 
 //index page
-router.get("/grapefruitblog", function (req, res) {
+router.get("/", function (req, res) {
 
     Post.find({}, function (err, posts) {
         res.render("index",
