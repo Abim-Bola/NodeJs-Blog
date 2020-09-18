@@ -7,4 +7,4 @@ module.exports = {
    res.redirect("/users/signin");
     }
 
-}
+};
